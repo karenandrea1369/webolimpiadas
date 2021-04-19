@@ -1,5 +1,6 @@
 @import "./pages/movimientoSelector";
 @import "./pages/arrastreAlInventario";
+@import "./pages/sumador";
 
 body{
     height : 100vh;
@@ -28,3 +29,20 @@ body{
     margin: 0;
     box-sizing: border-box  ;
 }
+
+.arrow-up {
+    width: 0; 
+    height: 0; 
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 20px solid black;
+  }
+  
+  .arrow-down {
+    width: 0; 
+    height: 0; 
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid black;
+  }
+  

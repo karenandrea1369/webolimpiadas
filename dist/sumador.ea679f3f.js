@@ -189,7 +189,7 @@ var bolitaMovSelector = /*#__PURE__*/function () {
 
 var _default = bolitaMovSelector;
 exports.default = _default;
-},{}],"scripts/pages/movimientoSelector.js":[function(require,module,exports) {
+},{}],"scripts/pages/sumador.js":[function(require,module,exports) {
 "use strict";
 
 var _bolitaMovSelector = _interopRequireDefault(require("../classes/bolitaMovSelector"));
@@ -197,51 +197,42 @@ var _bolitaMovSelector = _interopRequireDefault(require("../classes/bolitaMovSel
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 window.addEventListener('load', function () {
-  var selectors = document.querySelectorAll('.movSelector');
-  var balls = [];
-  selectors.forEach(function (selector, index) {
-    console.log(selector);
-    var ball = new _bolitaMovSelector.default(selector, (index - 1) * 100, 0);
-    ball.updatePosition();
-    balls.push(ball);
-  });
-  balls.forEach(function (ball) {
-    var ballElement = ball.getElement();
-    ballElement.addEventListener('click', function () {
-      balls.forEach(function (ball) {
-        ball.setSelected(false);
-        ball.getElement().classList.remove('movSelector--selected');
-      });
-      ball.setSelected(true);
-      ballElement.classList.add('movSelector--selected');
+  var adds = document.querySelectorAll('.add');
+  var subs = document.querySelectorAll('.sub');
+  var amounts = document.querySelectorAll('.square');
+  adds.forEach(function (add, index) {
+    add.addEventListener('mousedown', function (event) {
+      var amount;
+      amount = parseInt(amounts[index].innerHTML);
+      amount++;
+      amounts[index].innerHTML = amount;
+      result();
     });
   });
-  document.addEventListener('keydown', function (event) {
-    balls.forEach(function (ball) {
-      if (ball.isSelected()) {
-        switch (event.key) {
-          case 'ArrowUp':
-            ball.setY(ball.getY() - 5);
-            break;
+  subs.forEach(function (sub, index) {
+    sub.addEventListener('mousedown', function (event) {
+      //console.log("Chao");
+      var amount;
+      amount = parseInt(amounts[index].innerHTML);
 
-          case 'ArrowDown':
-            ball.setY(ball.getY() + 5);
-            break;
-
-          case 'ArrowRight':
-            ball.setX(ball.getX() + 5);
-            break;
-
-          case 'ArrowLeft':
-            ball.setX(ball.getX() - 5);
-            break;
-        }
-
-        ball.updatePosition();
+      if (amount > 0) {
+        amount--;
+        amounts[index].innerHTML = amount;
+        result();
       }
     });
-  }); // console.log(selectors);
-  // console.log(balls);
+  });
+
+  function result() {
+    var result = 0;
+    amounts.forEach(function (amount, index) {
+      if (index < 3) {
+        result += parseInt(amount.innerHTML);
+      }
+
+      amounts[3].innerHTML = result;
+    });
+  }
 });
 },{"../classes/bolitaMovSelector":"scripts/classes/bolitaMovSelector.js"}],"C:/Users/karen/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -447,5 +438,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["C:/Users/karen/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","scripts/pages/movimientoSelector.js"], null)
-//# sourceMappingURL=/movimientoSelector.e4527848.js.map
+},{}]},{},["C:/Users/karen/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","scripts/pages/sumador.js"], null)
+//# sourceMappingURL=/sumador.ea679f3f.js.map

@@ -40,6 +40,36 @@ div.movSelector--selected {
   background-color: #c98f49;
 }
 
+main {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+#sumador {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#sumador > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#sumador .square {
+  position: static;
+  transform: none;
+  text-align: center;
+  line-height: 70px;
+}
+#sumador .amount {
+  height: 130px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 body {
   height: 100vh;
   width: 100vw;
@@ -66,6 +96,22 @@ body {
 * {
   margin: 0;
   box-sizing: border-box;
+}
+
+.arrow-up {
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-bottom: 20px solid black;
+}
+
+.arrow-down {
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-top: 20px solid black;
 }
 
 /*# sourceMappingURL=/main.48b3db1d.css.map */
