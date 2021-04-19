@@ -1,0 +1,34 @@
+#inventario{
+    div{
+        &:nth-child(3n-1){
+            left: calc(50% - 100px);
+        }
+    
+        &:nth-child(3n){
+            left: calc(50% + 100px);
+        }
+    }
+}
+
+.squareInv{
+    top: 60%;
+    left: 50%;
+    pointer-events: none;
+}
+
+.circleInv{
+    top: 40%;
+    left: 50%;
+
+    &--green{
+        background-color: #80c949;
+    }
+
+    &--violet{
+        background-color: #9249c9;
+    }
+
+    &--orange{
+        background-color: #c98f49;
+    }
+}

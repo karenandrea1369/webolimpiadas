@@ -1,0 +1,30 @@
+@import "./pages/movimientoSelector";
+@import "./pages/arrastreAlInventario";
+
+body{
+    height : 100vh;
+    width : 100vw;
+}
+
+.circle{
+    position: absolute; //el padre debe tener position relative
+    width: 80px;
+    height: 80px;
+    border: 5px #000000 solid;
+    border-radius: 45px;
+    transform: translate(-50%,-50%);
+    cursor: pointer;
+}
+
+.square{
+    position: absolute; //el padre debe tener position relative
+    width: 80px;
+    height: 80px;
+    border: 5px #000000 solid;
+    transform: translate(-50%,-50%);
+}
+
+*{
+    margin: 0;
+    box-sizing: border-box  ;
+}

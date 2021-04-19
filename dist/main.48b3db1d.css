@@ -1,0 +1,71 @@
+main {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+div.movSelector {
+  top: 50%;
+  left: 50%;
+  border: 5px #000000 solid;
+}
+div.movSelector--selected {
+  border-color: red;
+}
+
+#inventario div:nth-child(3n-1) {
+  left: calc(50% - 100px);
+}
+#inventario div:nth-child(3n) {
+  left: calc(50% + 100px);
+}
+
+.squareInv {
+  top: 60%;
+  left: 50%;
+  pointer-events: none;
+}
+
+.circleInv {
+  top: 40%;
+  left: 50%;
+}
+.circleInv--green {
+  background-color: #80c949;
+}
+.circleInv--violet {
+  background-color: #9249c9;
+}
+.circleInv--orange {
+  background-color: #c98f49;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+}
+
+.circle {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border: 5px #000000 solid;
+  border-radius: 45px;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+}
+
+.square {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border: 5px #000000 solid;
+  transform: translate(-50%, -50%);
+}
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/*# sourceMappingURL=/main.48b3db1d.css.map */
