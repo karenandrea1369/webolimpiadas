@@ -93,6 +93,16 @@ body {
   transform: translate(-50%, -50%);
 }
 
+.triangle {
+  position: absolute;
+  border-bottom: 40px #000000 solid;
+  border-left: 20px transparent solid;
+  border-right: 20px transparent solid;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
 * {
   margin: 0;
   box-sizing: border-box;

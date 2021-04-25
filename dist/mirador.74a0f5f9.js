@@ -117,9 +117,97 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"scripts/pages/index.js":[function(require,module,exports) {
+})({"scripts/classes/Vector.js":[function(require,module,exports) {
+"use strict";
 
-},{}],"C:/Users/karen/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var Vector = /*#__PURE__*/function () {
+  function Vector(x, y) {
+    _classCallCheck(this, Vector);
+
+    this.x = x;
+    this.y = y;
+  }
+
+  _createClass(Vector, [{
+    key: "add",
+    value: function add(vector) {
+      var newX = this.x + vector.x;
+      var newY = this.y + vector.y;
+      return new Vector(newX, newY);
+    }
+  }, {
+    key: "sub",
+    value: function sub(vector) {
+      var newX = this.x - vector.x;
+      var newY = this.y - vector.y;
+      return new Vector(newX, newY);
+    }
+  }, {
+    key: "mult",
+    value: function mult(vector) {
+      var newX = this.x * vector.x;
+      var newY = this.y * vector.y;
+      return newX + newY;
+    }
+  }, {
+    key: "mag",
+    value: function mag() {
+      //square root
+      return Math.sqrt(this.x * this.x + this.y * this.y);
+    }
+  }, {
+    key: "angleBetween",
+    value: function angleBetween(v2) {
+      var v1 = new Vector(this.x, this.y);
+      return Math.acos(v1.mult(v2) / (v1.mag() * v2.mag())) * (180 / Math.PI);
+    }
+  }]);
+
+  return Vector;
+}();
+
+var _default = Vector;
+exports.default = _default;
+},{}],"scripts/pages/mirador.js":[function(require,module,exports) {
+"use strict";
+
+var _Vector = _interopRequireDefault(require("../classes/Vector"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+window.addEventListener('load', function () {
+  var triangle = document.querySelector('.triangle');
+  var trianglePos = new _Vector.default(0, 0);
+  var counter = 0;
+  var interval = 10;
+  document.addEventListener('mousemove', function (event) {
+    if (counter % interval == 0) {
+      //console.log(event);
+      var mousePos = new _Vector.default(event.x - window.innerWidth / 2, event.y - window.innerWidth / 2);
+      var angle = mousePos.angleBetween(new _Vector.default(0, -1)); //console.log(angle);
+
+      if (mousePos.x < 0) {
+        triangle.style.transform = 'rotate(' + -angle + 'deg)';
+      } else {
+        triangle.style.transform = 'rotate(' + angle + 'deg)';
+      }
+    }
+
+    counter++;
+  });
+});
+},{"../classes/Vector":"scripts/classes/Vector.js"}],"C:/Users/karen/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -323,5 +411,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["C:/Users/karen/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","scripts/pages/index.js"], null)
-//# sourceMappingURL=/pages.7852bfa2.js.map
+},{}]},{},["C:/Users/karen/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","scripts/pages/mirador.js"], null)
+//# sourceMappingURL=/mirador.74a0f5f9.js.map
