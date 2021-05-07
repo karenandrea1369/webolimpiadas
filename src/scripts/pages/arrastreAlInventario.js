@@ -6,6 +6,7 @@ window.addEventListener('load', ()=>{
     let balls = [];
     let offsetX = 0;
     let offsetY = 0;
+    const rectElements = document.querySelectorAll('.square');
 
     selectors.forEach((selector, index) =>{
         console.log(selector);
@@ -42,6 +43,17 @@ window.addEventListener('load', ()=>{
 
     document.addEventListener('mouseup', (event)=>{
         balls.forEach(ball =>{
+            if(ball.isSelected()){
+                rectElements.forEach(rect =>{
+                    const rectPos = rect.getBoundingClientRect();
+                    if(ball.getX() > rectPos.x
+                    && ball.getX() < rectPos.right
+                    && ball.getY() > rectPos.y
+                    && ball.getY() <rectPos.bottom){
+                        rect.style.backgroundColor = ball.getElement().dataset.color;
+                    }
+                });
+            }
             ball.setSelected(false);
         });
         offsetX = 0;

@@ -117,9 +117,132 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"scripts/pages/index.js":[function(require,module,exports) {
+})({"scripts/classes/BolitaInventario.js":[function(require,module,exports) {
+"use strict";
 
-},{}],"C:/Users/karen/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var BolitaInventario = /*#__PURE__*/function () {
+  function BolitaInventario(element, x, y, size) {
+    _classCallCheck(this, BolitaInventario);
+
+    this.element = element;
+    this.selected = false;
+    this.x = x;
+    this.y = y;
+
+    if (size) {
+      this.size = size;
+      element.style.width = "".concat(size, "px");
+      element.style.height = "".concat(size, "px");
+      element.style.borderRadius = "".concat(size / 2, "px");
+    }
+  }
+
+  _createClass(BolitaInventario, [{
+    key: "updatePosition",
+    value: function updatePosition() {
+      this.element.style.top = this.y + 'px';
+      this.element.style.left = this.x + 'px';
+    }
+  }, {
+    key: "getElement",
+    value: function getElement() {
+      return this.element;
+    }
+  }, {
+    key: "getX",
+    value: function getX() {
+      return this.x;
+    }
+  }, {
+    key: "setX",
+    value: function setX(x) {
+      this.x = x;
+    }
+  }, {
+    key: "getY",
+    value: function getY() {
+      return this.y;
+    }
+  }, {
+    key: "setY",
+    value: function setY(y) {
+      this.y = y;
+    }
+  }, {
+    key: "isSelected",
+    value: function isSelected() {
+      return this.selected;
+    }
+  }, {
+    key: "setSelected",
+    value: function setSelected(selected) {
+      this.selected = selected;
+    }
+  }]);
+
+  return BolitaInventario;
+}();
+
+var _default = BolitaInventario;
+exports.default = _default;
+},{}],"scripts/pages/bolitaGolosa.js":[function(require,module,exports) {
+"use strict";
+
+var _BolitaInventario = _interopRequireDefault(require("../classes/BolitaInventario"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+window.addEventListener('load', function () {
+  var food = document.querySelectorAll('.bolita');
+  var golosa = document.querySelector('.golosa');
+  var foodArray = [];
+  food.forEach(function (f) {
+    var posX = Math.random() * window.innerWidth;
+    var posY = Math.random() * window.innerHeight;
+    var size = Math.random() * 100 + 40;
+    var newFood = new _BolitaInventario.default(f, posX, posY, size);
+    newFood.updatePosition();
+    foodArray.push(newFood);
+  });
+  foodArray.forEach(function (ball) {
+    var ballElement = ball.getElement();
+    ballElement.addEventListener('mousedown', function (event) {
+      foodArray.forEach(function (ball) {
+        ball.setSelected(false);
+      });
+      ball.setSelected(true);
+      offsetX = event.offsetX + 5;
+      offsetY = event.offsetY + 5;
+    });
+  });
+  var offsetX = 0;
+  var offsetY = 0;
+  document.addEventListener('mousemove', function (event) {
+    foodArray.forEach(function (ball) {
+      if (ball.isSelected()) {
+        console.log("De lo que sea");
+        var x = event.clientX - (offsetX - ball.getElement().offsetWidth / 2);
+        var y = event.clientY - (offsetY - ball.getElement().offsetHeight / 2); //console.log(event);
+
+        ball.setX(x);
+        ball.setY(y);
+        ball.updatePosition();
+      }
+    });
+  });
+});
+},{"../classes/BolitaInventario":"scripts/classes/BolitaInventario.js"}],"C:/Users/karen/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -323,5 +446,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["C:/Users/karen/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","scripts/pages/index.js"], null)
-//# sourceMappingURL=/pages.7852bfa2.js.map
+},{}]},{},["C:/Users/karen/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","scripts/pages/bolitaGolosa.js"], null)
+//# sourceMappingURL=/bolitaGolosa.fad85d69.js.map

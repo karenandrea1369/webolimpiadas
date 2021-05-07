@@ -1,10 +1,16 @@
 class BolitaInventario{
 
-    constructor(element, x, y){
+    constructor(element, x, y, size){
         this.element = element;
         this.selected = false;
         this.x = x;
         this.y = y;
+        if(size){
+            this.size = size;
+            element.style.width = `${size}px`;
+            element.style.height = `${size}px`;
+            element.style.borderRadius = `${(size/2)}px`;
+        }
     }
 
     updatePosition(){

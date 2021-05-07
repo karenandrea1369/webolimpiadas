@@ -132,13 +132,20 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
 var BolitaInventario = /*#__PURE__*/function () {
-  function BolitaInventario(element, x, y) {
+  function BolitaInventario(element, x, y, size) {
     _classCallCheck(this, BolitaInventario);
 
     this.element = element;
     this.selected = false;
     this.x = x;
     this.y = y;
+
+    if (size) {
+      this.size = size;
+      element.style.width = "".concat(size, "px");
+      element.style.height = "".concat(size, "px");
+      element.style.borderRadius = "".concat(size / 2, "px");
+    }
   }
 
   _createClass(BolitaInventario, [{
@@ -201,6 +208,7 @@ window.addEventListener('load', function () {
   var balls = [];
   var offsetX = 0;
   var offsetY = 0;
+  var rectElements = document.querySelectorAll('.square');
   selectors.forEach(function (selector, index) {
     console.log(selector);
     var ball = new _BolitaInventario.default(selector, (index - 1) * 100, 0);
@@ -232,6 +240,16 @@ window.addEventListener('load', function () {
   });
   document.addEventListener('mouseup', function (event) {
     balls.forEach(function (ball) {
+      if (ball.isSelected()) {
+        rectElements.forEach(function (rect) {
+          var rectPos = rect.getBoundingClientRect();
+
+          if (ball.getX() > rectPos.x && ball.getX() < rectPos.right && ball.getY() > rectPos.y && ball.getY() < rectPos.bottom) {
+            rect.style.backgroundColor = ball.getElement().dataset.color;
+          }
+        });
+      }
+
       ball.setSelected(false);
     });
     offsetX = 0;
@@ -266,7 +284,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53132" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51560" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
